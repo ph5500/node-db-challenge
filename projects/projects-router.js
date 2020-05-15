@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
     } else {
         Projects.addProject(req.body)
             .then(project => {
-                res.status(201).json(projects);
+                res.status(201).json(project);
             })
             .catch(err => {
                 console.log(err);
@@ -76,6 +76,7 @@ router.post("/:id/tasks", (req, res) => {
                 } else {
                     res.status(404).json({ errorMessage: "The project with the specified id does not exist." });
                 }
+                return ({ task })
             })
             .catch(err => {
                 console.log(err);

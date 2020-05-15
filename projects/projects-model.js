@@ -30,9 +30,10 @@ function getProjects() {
 
 function addTask(task, project_id) {
     return db("tasks")
-        .join("projects", "tasks.project_id", "project.id")
+        .join("projects", "tasks.project_id", "projects.id")
         .insert({ ...task, project_id })
         .where({ project_id: project_id });
+
 }
 
 
