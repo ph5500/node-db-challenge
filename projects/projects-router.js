@@ -5,16 +5,7 @@ const Projects = require("./projects-model.js");
 const router = express.Router();
 
 //Resources
-router.get("/resources", (req, res) => {
-    Projects.getResources()
-        .then(resources => {
-            res.status(200).json(resources);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({ errorMessage: "Could not retrieve the list of resources" });
-        });
-});
+
 
 router.post("/resources", (req, res) => {
     if (!req.body.name) {
@@ -31,13 +22,17 @@ router.post("/resources", (req, res) => {
     }
 });
 
+
 router.get("/resources", (req, res) => {
     Projects.getResources()
         .then(resources => {
-            res.status(500).json({ errorMessage: "Could not retrieve the list of resources." });
+            res.status(200).json(resources);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ errorMessage: "Could not retrieve the list of resources" });
         });
 });
-
 
 
 
@@ -105,5 +100,16 @@ router.get("/:id/tasks", (req, res) => {
             res.status(500).json({ errorMessage: "Could not retrieve the list of tasks." })
         });
 });
+
+router.get("/tasks", (req, res) => {
+    Projects.getAllTasks()
+        .then(tasks => {
+            res.status(200).json(tasks)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ errorMessage: "Could not retrieve tasks." })
+        })
+})
 
 module.exports = router;

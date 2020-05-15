@@ -52,4 +52,4 @@ function getTasks(project_id) {
 }
 function getAllTasks() {
     return db('tasks')
-}
+} 
